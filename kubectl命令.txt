@@ -1,0 +1,16 @@
+²é¿´°æ±¾
+kubectl version
+
+view nodes
+kubectl get nodes
+
+create deployment
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+deployment.apps/kubernetes-bootcamp created
+
+list deployments
+kubectl get deployments
+
+view the container logs
+kubectl logs $POD_NAME
+
