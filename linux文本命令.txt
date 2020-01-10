@@ -5,3 +5,60 @@ grep [选项] 模式 文件
 -n	在每一行的最前面列出行号。
 -v	列出没有匹配模式的行。
 -w	把表达式当做一个完整的单字符来搜寻，忽略那些部分匹配的行。
+
+netstat -ano|findstr "8080" 查看哪个端口被占用
+
+添加到网络的路由
+# route add –net IP netmask MASK eth0
+# route add –net IP netmask MASK gw IP
+列出目前所有网络的联机状态
+netstat -an
+
+查看端口是否启动
+Telnet localhost 端口号
+暂时将你的 eth0 这张网络卡的 IP 设定为 192.168.1.100 ，如何进行？
+ifconfig eth0 192.168.1.100
+我要增加一个路由规则，以 eth0 连接 192.168.100.100/24 这个网域，应该如何下达指令？
+route add -net 192.l68.100.0 netmask 255.255.255.0 dev eth0
+我的网络停顿的很厉害，尤其是连接到 tw.yahoo.com 的时候，那么我应该如何检查那个环节出了问题？
+traceroute tw.yahoo.com
+我发现我的 Linux 主机上面有个联机很怪异，想要将他断线，应该如何进行？
+以 root 的身份进行『netstat -anp |more』查出该联机的 PID，然后以『 kill -9 PID 』踢掉该联机。
+你如何知道 green.ev.ncku.edu.tw 这部主机的 IP ？
+方法很多，可以利用 host green.ev.ncku.edu.tw 或 dig green.ev.ncku.edu.tw 或 nslookup green.ev.ncku.edu.tw 等方法找出
+请找出你的机器上面最适当的 MTU 应该是多少？
+请利用『ping -c 3 -M do -s MTU yourIP 』找出你的 IP 的 MTU 数值。 事实上，你还可以先以 ip 设定网络卡较大的 MTU 后，在进行上述的动作，才能够找出网域内适合的 MTU。
+如何在终端机接口上面进行 WWW 浏览？又该如何下载 WWW 上面提供的档案？
+要浏览可以使用 links 或 lynx ，至于要下载则使用 wget 这个软件。
+在终端机接口中，如何连接 bbs.sayya.org 这个 BBS ？
+利用 telnet bbs.sayya.org 即可连接上
+
+防火墙iptables
+-
+P 设置默认策略
+-
+F 清空规则链
+-
+L 查看规则链
+-
+A 在规则链的末尾加入新规则
+-
+I num 在规则链的头部加入新规则
+-
+D num 删除某一条规则
+-
+s 匹配来源地址
+IP/MASK，加叹号 “!”表示除这个 IP外
+-
+d 匹配目标地址
+-
+i 网卡名称 匹配从这块网卡流入的数据
+-
+o 网卡名称 匹配从这块网卡流出的数据
+-
+p 匹配协议，如
+TCP、 UDP、 ICMP
+--
+dport num 匹配目标端口号
+--
+sport num 匹配来源端口号
