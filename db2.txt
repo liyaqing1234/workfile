@@ -1,0 +1,5 @@
+DB2是IBM开发的数据库服务器。它是一个关系数据库管理系统，用于有效地存储，分析和检索数据。
+DB2数据库支持面向对象的特性和XML的非关系结构。
+
+db2数据备份
+db2 backup db sample use tsm （sample是表名）
