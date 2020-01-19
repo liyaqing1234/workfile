@@ -14,3 +14,66 @@ kubectl get deployments
 view the container logs
 kubectl logs $POD_NAME
 
+kubectl get-列表资源
+kubectl describe-显示有关资源的详细信息
+kubectl日志 -从容器中的容器中打印日志
+kubectl exec-在容器中的容器上执行命令
+
+删除一个容器 kubectl delete pod nginx-2187705812-8r0h4
+删除deployment  kubectl delete deployment nginx
+k8s提供的服务：
+服务发现和负载均衡
+Kubernetes 可以使用 DNS 名称或自己的 IP 地址公开容器，如果到容器的流量很大，Kubernetes 可以负载均衡并分配网络流量，从而使部署稳定。
+Master 组件提供集群的控制平面。Master 组件对集群进行全局决策（例如，调度），并检测和响应集群事件（例如，当不满足部署的 replicas 字段时，启动新的 podPod 是 Kubernetes 的原子对象。Pod 表示您的集群上一组正在运行的容器。）
+kube-apiserver
+主节点上负责提供 Kubernetes API 服务的组件；它是 Kubernetes 控制面的前端。
+
+kube-apiserver 在设计上考虑了水平扩缩的需要。 换言之，通过部署多个实例可以实现扩缩
+etcd 是兼具一致性和高可用性的键值数据库，可以作为保存 Kubernetes 所有集群数据的后台数据库。
+编排系统（YAML File）
+kubernetes角色组成：
+
+1）Pod
+
+Pod是kubernetes的最小操作单元，一个Pod可以由一个或多个容器组成；
+
+同一个Pod只能运行在同一个主机上，共享相同的volumes、network、namespace；
+
+2）ReplicationController（RC）
+
+RC用来管理Pod，一个RC可以由一个或多个Pod组成，在RC被创建后，系统会根据定义好的副本数来创建Pod数量。在运行过程中，如果Pod数量小于定义的，就会重启停止的或重新分配Pod，反之则杀死多余的。当然，也可以动态伸缩运行的Pods规模。
+
+RC通过label关联对应的Pods，在滚动升级中，RC采用一个一个替换要更新的整个Pods中的Pod。
+
+3）Service
+
+Service定义了一个Pod逻辑集合的抽象资源，Pod集合中的容器提供相同的功能。集合根据定义的Label和selector完成，当创建一个Service后，会分配一个Cluster IP，这个IP与定义的端口提供这个集合一个统一的访问接口，并且实现负载均衡。
+
+4）Label
+
+Label是用于区分Pod、Service、RC的key/value键值对； 
+
+Pod、Service、RC可以有多个label，但是每个label的key只能对应一个；
+
+主要是将Service的请求通过lable转发给后端提供服务的Pod集合；
+
+查看端口和服务 netstat -antp | grep ssh
+
+docker0（这是Docker的默认网桥）
+cbr0 k8s默认网桥
+
+NodePort Service是类型为NodePort的Service， k8s除了会分配给NodePort Service一个内部的虚拟IP，另外会在每一个Node上暴露端口NodePort，外部网络可以通过[NodeIP]:[NodePort]访问到Service。
+
+vi mysql-rc.yaml
+vi mysql-svc.yaml
+kubectl create -f mysql-rc.yaml
+kubectl create -f mysql-svc.yaml
+sudo docker exec -it e1ecc4e0e05a /bin/bash
+alter user 'root'@'%' identified with mysql_native_password by'root';
+alter  user 'root'@'%' identified by 'mysql';
+kubectl --server=https://47.100.118.111:6443 --certificate-authority=/var/run/kubernetes/ssl_keys/ca.crt --client-certificate=/var/run/kubernetes/ssl_keys/cs_client.crt --client-key=/var/run/kubernetes/ssl_keys/cs_client.key get nodes
+
+k8s学习网站
+https://www.kuboard.cn/learning/k8s-bg/component.html#master%E7%BB%84%E4%BB%B6
+
+
