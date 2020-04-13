@@ -1,1 +1,36 @@
 2020.04.13
+
+top 查看进程列表
+top -b 批处理
+top -c 显示完整的命令
+
+kill 删除进程
+kill -9 PID 强制终止
+kill -0 终止当前shell启动的进程
+
+strace 进程系统调用的追踪
+strace -c 命令 统计系统调用所执行的时间，次数和出错的次数
+
+sleep 用于在shell脚本中延迟时间
+sleep <n> s 延迟n秒 
+
+at 延迟至特定时间
+atq 查看系统没有执行工作任务命令
+
+crontab 定时任务
+minute hour day month week command
+
+/proc 文件系统
+cat /proc/version | cut -d '(' -f 1 查看内核版本
+cat 、proc/meminfo | grep MemFree 当前可用内存数量
+
+netstat 提供有关路由和网络连接的信息
+netstat -rn 显示系统的路由
+netstat -a 显示所有网络连接
+
+
+
+
+
+
+
