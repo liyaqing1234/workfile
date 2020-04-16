@@ -27,6 +27,20 @@ cat 、proc/meminfo | grep MemFree 当前可用内存数量
 netstat 提供有关路由和网络连接的信息
 netstat -rn 显示系统的路由
 netstat -a 显示所有网络连接
+netstat -tanlp 查看端口和进程
+
+2020.04.14
+nohup command 让命令后台运行
+brctl show 查看网桥和端口连接信息
+
+2020.04.15
+rm -rf jdk1.8.0_241/ 递归删除文件夹和其中的目录
+改变文件的用户
+chown weblogic weblogic
+改变文件的组
+chgrp weblogic weblogic
+
+
 
 
 
